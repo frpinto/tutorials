@@ -1,0 +1,61 @@
+---
+title: "Making R packages and sharing them through GitHub"
+output: html_notebook
+---
+
+This tutorial is mainly based in the content of the digital book [R packages](http://r-pkgs.had.co.nz/).
+
+You will need to install RStudio and the packages `devtools` and `roxygen2`.
+
+## Package directory creation
+
+Once you have a name for your package (I will use `mypackage` as an example) you can create the basic package directory structure with
+
+```{r}
+devtools::create("mypackage")
+```
+
+This will create a `mypackage` directory within the current R working directory. It will also create the `mypackage/R` subdirectory (where R function files should be saved), a `DESCRIPTION` file, a `NAMESPACE` file and a `mypackage.Rproj` RStudio project file.
+
+Alternatively, you can do the same through the RStudio menu options: File > New Project > New Directory > R Package.
+
+## The R/ directory
+
+This directory is the core of your package where all R function files should be saved. It is not possible to create subdirectories within R/.
+You can create a separate .R file for each function, or group related functions within the same file. It is not a good practice to put all functions within the same file.
+
+Create a new file with the following code:
+
+```{r}
+mysum = function(a,b){
+  c=a+b
+}
+```
+
+Save it as `mysum.R` in the R/ directory.
+You can load all the functions in your R/ directory into the current R environment with:
+
+```{r}
+devtools::load_all()
+```
+(if your current working directory is not the package directory, you need to specifiy the path to the package directory in the `load_all function input)
+
+## Edit DESCRIPTION file
+
+The DESCRIPTION file is mandatory if you (or others) want to be able to install the package. Each line consists of a field name and a value, separated by a colon (:). When values span multiple lines, they need to be indented.
+You can edit it to change the Title, Authors, Description and License fields. 
+
+
+
+You should also create the Imports field if your package uses functions from other packages:
+
+```{r}
+Imports:
+    ggvis (>= 0.2),
+    dplyr (>= 0.3.0.1)
+```
+
+Packages listed in Imports will be automatically installed (if necessary) when someone install your package.
+
+
+
