@@ -1,0 +1,181 @@
+---
+title: "Making R packages and sharing them through GitHub"
+output: html_notebook
+---
+
+This tutorial is based (some parts are literally copied) in the content of the digital book [R packages](http://r-pkgs.had.co.nz/).
+
+You will need to install RStudio and the packages `devtools` and `roxygen2`.
+
+## Package directory creation
+
+Once you have a name for your package (I will use `mypackage` as an example) you can create the basic package directory structure with
+
+```{r}
+devtools::create("mypackage")
+```
+
+This will create a `mypackage` directory within the current R working directory. It will also create the `mypackage/R` subdirectory (where R function files should be saved), a `DESCRIPTION` file, a `NAMESPACE` file and a `mypackage.Rproj` RStudio project file.
+
+Alternatively, you can do the same through the RStudio menu options: File > New Project > New Directory > R Package.
+
+## The R/ directory
+
+This directory is the core of your package where all R function files should be saved. It is not possible to create subdirectories within R/.
+You can create a separate .R file for each function, or group related functions within the same file. It is not a good practice to put all functions within the same file.
+
+Create a new file with the following code:
+
+```{r}
+mysum = function(a,b){
+  c=a+b
+}
+```
+
+Save it as `mysum.R` in the R/ directory.
+You can load all the functions in your R/ directory into the current R environment with:
+
+```{r}
+devtools::load_all()
+```
+(if your current working directory is not the package directory, you need to specifiy the path to the package directory in the `load_all function input)
+
+## Edit DESCRIPTION file
+
+The DESCRIPTION file is mandatory if you (or others) want to be able to install the package. Each line consists of a field name and a value, separated by a colon (:). When values span multiple lines, they need to be indented.
+You can edit it to change the Package, Title, Authors, Description and License fields. 
+
+```{r}
+Package: mypackage
+Title: What The Package Does (one line, title case required)
+Version: 0.1
+Authors@R: person("First", "Last", email = "first.last@example.com",
+                  role = c("aut", "cre"))
+Description: The description of a package is usually long,
+    spanning multiple lines. The second and subsequent lines
+    should be indented, usually with four spaces.
+Depends: R (>= 3.1.0)
+License: What license is it under?
+LazyData: true
+```
+
+The authors field is defined with the `person() function, which has four main arguments:
+
+* The name, specified by the first two arguments, given and family (these are normally supplied by position, not name).
+* The email address.
+* A three letter code specifying the role. There are four important roles:
+    + cre: the creator or maintainer, the person you should bother if you have problems.
+    + aut: authors, those who have made significant contributions to the package.
+    + ctb: contributors, those who have made smaller contributions, like patches.
+    + cph: copyright holder. This is used if the copyright is held by someone other than the author, typically a company (i.e. the author’s employer).
+    
+Multiple authors ca be specified using the function `c()` to concatenate multiple person() functions.
+
+In the license field you can insert the name of a file containing the license text, or specify one type of open source license (gpl-2, more info at http://r-pkgs.had.co.nz/description.html)
+
+You should also create the Imports field if your package uses functions from other packages:
+
+```{r}
+Imports:
+    ggvis (>= 0.2),
+    dplyr (>= 0.3.0.1)
+```
+
+Packages listed in Imports will be automatically installed (if necessary) when someone install your package. However, it does not mean that it will be attached along with your package (i.e., `library(x)`). The best practice is to explicitly refer to external functions using the syntax `package::function()`. This makes it very easy to identify which functions live outside of your package. If you need a specific version of a package, specify it in parentheses after the package name.
+
+Examble of S2B package:
+
+```{r}
+
+Package: S2B
+Title: Specific Specific Betweenness
+Version: 0.0.0.9000
+Authors@R: c(
+  person("Francisco", "Pinto", email = "frpinto@fc.ul.pt", role = c("aut", "cre")),
+  person("Marina", "Garcia-Vaquero", email = "mlgarciavaquero@fc.ul.pt", role = c("aut")),
+  person("Javier", "De Las Rivas", email = "jrivas@usal.es", role = c("aut")),
+  person("Margarida", "Gama-Carvalho", email = "mhcarvalho@fc.ul.pt", role = c("aut")))
+Description: Computes for every node in the network its specific betweenness, that is, how 
+  many times it is part of a shortest path linking nodes from two sets of seeds. By network 
+  randomization it evaluates if the observed specific betweenness is not easily explained by
+  chance.
+URL: http://github.com/frpinto/S2B
+BugReports: http://github.com/frpinto/S2B/issues  
+Depends: R
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1.9000
+Imports: igraph
+```
+
+## Documentation
+
+Using the Roxygen package you can create documentation files automatically from commented lines in your function files, right before the function code. Roxygen comments start with #' to distinguish them from regular comments:
+
+```{r}
+#' Add together two numbers.
+#' 
+#' @param a A number.
+#' @param b A number.
+#' @return The sum of a and b.
+#' @examples
+#' mysum(1, 1)
+#' mysum(10, 1)
+mysum = function(a,b){
+  c=a+b
+}
+```
+
+Running `devtools::document()` will generate a man/mysum.Rd that R will use to generate a help page for the function.
+When you use `?mysum`, `help("mysum")`, or `example("mysum")`, R looks for an mysum.Rd file. It then parses the file, converts it into HTML and displays it.
+
+(Note: you can preview development documentation because devtools overrides the usual help functions to teach them how to work with source packages. If the documentation doesn’t appear, make sure that you’re using devtools and that you’ve loaded the package with `devtools::load_all()`)
+
+## NAMESPACE file
+
+The NAMESPACE file of a packcage is important to define how your functions may call functions from other packages, and to define which of your functions become available to the user when your package is attached to the R environment.
+
+The Roxygen package also prepares the NAMESPACE file for you. For that purpose, you need to add a Roxygen comment line with `@export` to your functions if you want them to be available to the user (which should be the most common situation):
+
+```{r}
+#' Add together two numbers.
+#' 
+#' @param a A number.
+#' @param b A number.
+#' @return The sum of a and b.
+#' @examples
+#' mysum(1, 1)
+#' mysum(10, 1)
+#' @export
+mysum = function(a,b){
+  c=a+b
+}
+```
+
+Running `devtools::document()` again will update the NAMESPACE file.
+
+## Data directory
+
+It’s often useful to include data in a package. If you’re releasing the package to a broad audience, it’s a way to provide use cases for the package’s functions.
+The most common location for package data is a `data/` directory. Each file in this directory should be a `.RData` file created by `save()` containing a single object (with the same name as the file). 
+If the `DESCRIPTION` file contains `LazyData: true`, then datasets will be lazily loaded. This means that they won’t occupy any memory until you use them.
+
+Objects in `data/` are always effectively exported. This means that they must be documented. Documenting data is like documenting a function with a few minor differences. Instead of documenting the data directly, you document the name of the dataset and save it in `R/`. For example, the roxygen2 block used to document the `diamonds` data in `ggplot2`  package is saved as `R/data.R` and looks something like this:
+
+```{r}
+#' Prices of 50,000 round cut diamonds.
+#'
+#' A dataset containing the prices and other attributes of almost 54,000
+#' diamonds.
+#'
+#' @format A data frame with 53940 rows and 10 variables:
+#' \describe{
+#'   \item{price}{price, in US dollars}
+#'   \item{carat}{weight of the diamond, in carats}
+#'   ...
+#' }
+#' @source \url{http://www.diamondse.info/}
+"diamonds"
+```
+
