@@ -211,7 +211,7 @@ file.exists("~/.ssh/id_rsa.pub")
 
 6. In RStudio, go to project options (you may need to open your package . Rproj file first), then to the Git/SVN panel. Change the “Version control system” from “None” to “Git”. You’ll then be prompted to restart RStudio.
 
-7. In a shell, change to the project directory and run git init. Restart RStudio and reopen your package project.
+7. In a shell (terminal window), change to the project directory and run git init. Restart RStudio and reopen your package project.
 
 8. Once Git has been initialised, you’ll see two new components:
     +The git pane, at the top-right, shows you what files have changed and includes buttons for the most important Git commands
@@ -236,4 +236,11 @@ git push -u origin master
 
 15. Repeat 12-14
 
+## Install package
+
+Once a complete version of your package is available on github, anyone can install it in their own R by running:
+
+```{r}
+devtools::install_github("username/packagename")
+```
 
