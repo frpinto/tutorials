@@ -5,7 +5,7 @@ output: html_notebook
 
 # Making R packages and sharing them through GitHub
 
-This tutorial is based (some parts are literally copied) in the content of the digital book [R packages](http://r-pkgs.had.co.nz/).
+This tutorial is based (some parts are literally copied) on the content of the digital book [R packages](http://r-pkgs.had.co.nz/).
 
 You will need to install RStudio and the packages `devtools` and `roxygen2`.
 
