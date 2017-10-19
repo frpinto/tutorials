@@ -3,6 +3,8 @@ title: "Making R packages and sharing them through GitHub"
 output: html_notebook
 ---
 
+# Making R packages and sharing them through GitHub
+
 This tutorial is based (some parts are literally copied) in the content of the digital book [R packages](http://r-pkgs.had.co.nz/).
 
 You will need to install RStudio and the packages `devtools` and `roxygen2`.
@@ -178,4 +180,60 @@ Objects in `data/` are always effectively exported. This means that they must be
 #' @source \url{http://www.diamondse.info/}
 "diamonds"
 ```
+
+## Git and GitHub
+
+1. Install Git:
+
+    + Windows: http://git-scm.com/download/win.
+    + OS X: http://git-scm.com/download/mac.
+    + Debian/Ubuntu: sudo apt-get install git-core.
+    + Other Linux distros: http://git-scm.com/download/linux.
+    
+2. Tell Git your name and email address. These are used to label each commit so that when you start collaborating with others, it’s clear who made each change. In the shell, run:
+
+```{bash}
+git config --global user.name "YOUR FULL NAME"
+git config --global user.email "YOUR EMAIL ADDRESS"
+```
+
+3. Create an account on GitHub, https://github.com (the free plan is fine). Use the same email address as above.
+
+4. If needed, generate a SSH key. SSH keys allow you to securely communicate with websites without a password. There are two parts to an SSH key: one public, one private. People with your public key can securely encrypt data that can only be read by someone with your private key. You can check if you already have an SSH key-pair by running:
+
+```{bash}
+file.exists("~/.ssh/id_rsa.pub")
+```
+
+5. If that returns FALSE, you’ll need to create a new key. Go to RStudio preferences, choose the Git/SVN panel, and click “Create RSA key…”. Then click “View public key” in RStudio’s Git/SVN preferences pane and copy to clipboard. In GitHub settings create a SSH public key and paste the RSA key content.
+
+(steps 1 to 5 only needed for the first github repository)
+
+6. In RStudio, go to project options (you may need to open your package . Rproj file first), then to the Git/SVN panel. Change the “Version control system” from “None” to “Git”. You’ll then be prompted to restart RStudio.
+
+7. In a shell, change to the project directory and run git init. Restart RStudio and reopen your package project.
+
+8. Once Git has been initialised, you’ll see two new components:
+    +The git pane, at the top-right, shows you what files have changed and includes buttons for the most important Git commands
+    + The git dropdown menu, found in the toolbar, includes Git and GitHub commands that apply to the current file
+  
+9. The fundamental unit of work in Git is a commit. A commit takes a snapshot of your code at a specified point in time. You create a commit in two stages: 1) You stage files, telling Git which changes should be included in the next commit and 2) you commit the staged files, describing the changes with a message.
+
+10. Create a new repo on GitHub: https://github.com/new. Give it the same name as your package, and include the package title as the repo description. Leave all the other options as is, then click Submit.
+
+11. Open a shell, move to the project directory and copy the instructions on github (the option after "... or push an existing repository from the command line:"). It should look like:
+
+```{bash}
+git remote add origin https://github.com/frpinto/logicalsimR.git
+git push -u origin master
+```
+
+12. Improve package code.
+
+13. Commit (in RStudio) 
+
+14. Push (in Rstudio)
+
+15. Repeat 12-14
+
 
