@@ -1,8 +1,10 @@
 ---
 title: "Working with GitHub and RStudio"
 output:
-  pdf_document: default
+  html_document:
+    df_print: paged
   html_notebook: default
+  pdf_document: default
 ---
 
 This tutorial explains how to create a GitHub repository in the GamaPintoLab account and link it to a directory in your computer where you edit your R scripts and functions using an RStudio project. 
@@ -68,4 +70,8 @@ file.exists("~/.ssh/id_rsa.pub")
     1.  in the Git pannel tick the "Staged" box of the files you have changed
     2.  click "Commit"
     3.  write commit message (something that helps you know what the changes were about)
-    4.  
+    4.  click "Commit"
+    5.  after commit is done close log window
+    6.  click the upward arrow to push the last commit to the GitHub repository
+    
+    
