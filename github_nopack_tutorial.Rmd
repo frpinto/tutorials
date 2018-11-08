@@ -32,19 +32,20 @@ git config --global user.name "YOUR FULL NAME"
 git config --global user.email "YOUR EMAIL ADDRESS"
 ```
 
-5.  Once you've installed Git, you'll need to activate it on your system by following these steps:
+5.  Once you've installed Git, you'll need to activate it on your RStudio by following these steps:
 
     * Go to Global Options (from the Tools menu)
     * Click Git/SVN
     * Click Enable version control interface for RStudio projects
     * If necessary, enter the path for your Git executable where provided. 
+    
+![](./global_options.tiff)     
 
 6. If needed, generate a SSH key. SSH keys allow you to securely communicate with websites without a password. There are two parts to an SSH key: one public, one private. People with your public key can securely encrypt data that can only be read by someone with your private key. You can check if you already have an SSH key-pair by running:
 
 ```{bash eval=FALSE}
 file.exists("~/.ssh/id_rsa.pub")
 ```
-
 
 
 7. If that returns FALSE, you’ll need to create a new key. Go to RStudio preferences, choose the Git/SVN panel, and click “Create RSA key…”. Then click “View public key” in RStudio’s Git/SVN preferences pane and copy to clipboard. In GitHub settings create a SSH public key and paste the RSA key content.
@@ -59,7 +60,7 @@ file.exists("~/.ssh/id_rsa.pub")
 6.  Copy the repository url address (something like: https://github.com/GamaPintoLab/reponame.git)
 7.  In RStudio create new project:
     * Execute the New Project command (from the Project menu)
-    * Choose "Version Control""
+    * Choose "Version Control"
     * Choose "Git"
     * Paste repository url and write directory name and location
     * Tick the "Open in new session" box (optional but useful)
