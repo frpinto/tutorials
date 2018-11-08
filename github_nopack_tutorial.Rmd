@@ -34,12 +34,12 @@ git config --global user.email "YOUR EMAIL ADDRESS"
 
 5.  Once you've installed Git, you'll need to activate it on your RStudio by following these steps:
 
-    * Go to Global Options (from the Tools menu)
+    * Go to Global Options (from the Tools menu, Figure 1)
     * Click Git/SVN
     * Click Enable version control interface for RStudio projects
-    * If necessary, enter the path for your Git executable where provided. 
-    
-![](./global_options.tiff)     
+    * If necessary, enter the path for your Git executable where provided.
+   
+     ![RStudio global options](./global_options.jpg) 
 
 6. If needed, generate a SSH key. SSH keys allow you to securely communicate with websites without a password. There are two parts to an SSH key: one public, one private. People with your public key can securely encrypt data that can only be read by someone with your private key. You can check if you already have an SSH key-pair by running:
 
@@ -68,11 +68,19 @@ file.exists("~/.ssh/id_rsa.pub")
 8.  Create and edit .R files (or copy them from previous directories)
 9.  You can edit the .gitignore file to add files that you don't want to keep in the repository (specially for large data files)
 10. Whenever you want to backup your current work:
-    1.  in the Git pannel tick the "Staged" box of the files you have changed
-    2.  click "Commit"
-    3.  write commit message (something that helps you know what the changes were about)
+    1.  in the Git pannel (Figure 2) tick the "Staged" box of the files you have changed
+    2.  click "Commit" 
+    3.  write commit message (something that helps you know what the changes were about) (Figure 3)
     4.  click "Commit"
-    5.  after commit is done close log window
-    6.  click the upward arrow to push the last commit to the GitHub repository
+    5.  after commit is done close log window (Figure 4)
+    6.  click the upward arrow to push the last commit to the GitHub repository (Figure 5)
     
+  ![Git pannel](./git_pannel.jpg) 
+  
+  ![Commit window](./commit_window.jpg) 
+
+  ![Commit log window](./commit_log.jpg) 
+    
+  ![Push button](./push_button.jpg)
+
     

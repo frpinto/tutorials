@@ -1,0 +1,33 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+packages para instalar:
+igraph
+deSolve
+org.Hs.eg.db (bioconductor)
+
+import de ficheiros de dados
+tipos de dados
+  numeric
+  logic
+  character
+  vector
+  matriz
+  dataframe ($colname)
+  list ($namedlist)
+  operações
+  sets
+indexação 
+função
+ciclos
+if
+plot
+
+
+```{r}
+
+```
+
+
