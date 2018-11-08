@@ -1,0 +1,71 @@
+---
+title: "Working with GitHub and RStudio"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+This tutorial explains how to create a GitHub repository in the GamaPintoLab account and link it to a directory in your computer where you edit your R scripts and functions using an RStudio project. 
+
+This will allow you to:
+
+* backup your files in a private repository
+* go back to previous versions of your work
+
+# Steps you have to follow once:
+
+1.  create a GitHub account with your fc.ul.pt mail
+2.  send your account name and associated email to Francisco so that he can invite you to the GamaPintoLab GitHub organization
+3.  install Git on your computer
+
+    + Windows: http://git-scm.com/download/win.
+    + OS X: http://git-scm.com/download/mac.
+    + Debian/Ubuntu: sudo apt-get install git-core.
+    + Other Linux distros: http://git-scm.com/download/linux.
+    
+4. Tell Git your name and email address. These are used to label each commit so that when you start collaborating with others, it’s clear who made each change. In the shell, run:
+
+```{bash eval=FALSE}
+git config --global user.name "YOUR FULL NAME"
+git config --global user.email "YOUR EMAIL ADDRESS"
+```
+
+5.  Once you've installed Git, you'll need to activate it on your system by following these steps:
+
+    * Go to Global Options (from the Tools menu)
+    * Click Git/SVN
+    * Click Enable version control interface for RStudio projects
+    * If necessary, enter the path for your Git executable where provided. 
+
+6. If needed, generate a SSH key. SSH keys allow you to securely communicate with websites without a password. There are two parts to an SSH key: one public, one private. People with your public key can securely encrypt data that can only be read by someone with your private key. You can check if you already have an SSH key-pair by running:
+
+```{bash eval=FALSE}
+file.exists("~/.ssh/id_rsa.pub")
+```
+
+
+
+7. If that returns FALSE, you’ll need to create a new key. Go to RStudio preferences, choose the Git/SVN panel, and click “Create RSA key…”. Then click “View public key” in RStudio’s Git/SVN preferences pane and copy to clipboard. In GitHub settings create a SSH public key and paste the RSA key content.
+
+# Steps you have to follow each time you create a new repository:
+
+1.  Create a new repo on GitHub (+ New repository)
+2.  Select GamaPintoLab as the owner
+3.  Give it a name and a short description
+4.  Select Private
+5.  Leave other options as is, then click "Create Repository"
+6.  Copy the repository url address (something like: https://github.com/GamaPintoLab/reponame.git)
+7.  In RStudio create new project:
+    * Execute the New Project command (from the Project menu)
+    * Choose "Version Control""
+    * Choose "Git"
+    * Paste repository url and write directory name and location
+    * Tick the "Open in new session" box (optional but useful)
+    * Click "Create Project"
+8.  Create and edit .R files (or copy them from previous directories)
+9.  You can edit the .gitignore file to add files that you don't want to keep in the repository (specially for large data files)
+10. Whenever you want to backup your current work:
+    1.  in the Git pannel tick the "Staged" box of the files you have changed
+    2.  click "Commit"
+    3.  write commit message (something that helps you know what the changes were about)
+    4.  
