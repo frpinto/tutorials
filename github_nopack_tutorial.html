@@ -168,8 +168,8 @@ git config --global user.email &quot;YOUR EMAIL ADDRESS&quot;</code></pre>
 <li>If that returns FALSE, you’ll need to create a new key. Go to RStudio preferences, choose the Git/SVN panel, and click “Create RSA key…”. Then click “View public key” in RStudio’s Git/SVN preferences pane and copy to clipboard. In GitHub settings create a SSH public key and paste the RSA key content.</li>
 </ol>
 </div>
-<div id="steps-you-have-to-follow-each-time-you-create-a-new-repository" class="section level1">
-<h1>Steps you have to follow each time you create a new repository:</h1>
+<div id="steps-you-have-to-follow-each-time-you-create-a-new-repository-in-a-new-directory" class="section level1">
+<h1>Steps you have to follow each time you create a new repository in a new directory:</h1>
 <ol style="list-style-type: decimal">
 <li>Create a new repo on GitHub (+ New repository)</li>
 <li>Select GamaPintoLab as the owner</li>
@@ -214,6 +214,37 @@ git config --global user.email &quot;YOUR EMAIL ADDRESS&quot;</code></pre>
 <img src="data:image/jpeg;base64,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" alt="Push button" />
 <p class="caption">Push button</p>
 </div>
+</div>
+<div id="steps-you-have-to-follow-each-time-you-create-a-new-repository-in-an-existing-directory" class="section level1">
+<h1>Steps you have to follow each time you create a new repository in an existing directory:</h1>
+<ol style="list-style-type: decimal">
+<li><p>You may already have a directory with the R scripts and functions associated with a given research project. First, you turn this directory into an R project by choosing New Project &gt; Existing Directory and then select your directory location and click “Create Project”</p></li>
+<li><p>Go to project options, then to the Git/SVN panel. Change the “Version control system” from “None” to “Git”. You’ll then be prompted to restart RStudio.</p></li>
+<li><p>In a terminal window, change to the project directory and run “git init”. Restart RStudio and reopen your package project.</p></li>
+<li>Once Git has been initialised, you’ll see two new components in your RStudio project: +The git pane, at the top-right, shows you what files have changed and includes buttons for the most important Git commands
+<ul>
+<li>The git dropdown menu, found in the toolbar, includes Git and GitHub commands that apply to the current file</li>
+</ul></li>
+<li><p>The fundamental unit of work in Git is a commit. A commit takes a snapshot of your code at a specified point in time. You create a commit in two stages: 1) You stage files, telling Git which changes should be included in the next commit and 2) you commit the staged files, describing the changes with a message.</p></li>
+<li><p>Select some files to stage and make a first commit</p></li>
+<li><p>Create a new repo on GitHub: <a href="https://github.com/new" class="uri">https://github.com/new</a>. Select GamaPintoLab as the owner. Give it the same name as your R project directory and write a short description. Select Private (you can change that later) Leave all the other options as is, then click Submit.</p></li>
+<li><p>Open a terminal window, move to the project directory and copy the instructions on github (the option after “… or push an existing repository from the command line:”). It should look like:</p></li>
+</ol>
+<pre class="bash"><code>git remote add origin https://github.com/GamaPintoLab/yourprojectname.git
+git push -u origin master</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li><p>Improve package code.</p></li>
+<li><p>You can edit the .gitignore file to add files that you don’t want to keep in the repository (specially for large data files)</p></li>
+<li>Whenever you want to backup your current work:
+<ol style="list-style-type: decimal">
+<li>in the Git pannel (Figure 2) tick the “Staged” box of the files you have changed</li>
+<li>click “Commit”</li>
+<li>write commit message (something that helps you know what the changes were about) (Figure 3)</li>
+<li>click “Commit”</li>
+<li>after commit is done close log window (Figure 4)</li>
+<li>click the upward arrow to push the last commit to the GitHub repository (Figure 5)</li>
+</ol></li>
+</ol>
 </div>
 
 
